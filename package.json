@@ -7,11 +7,20 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "pm2:start": "pm2 start ./ecosystem.config.cjs",
+    "pm2:restart": "pm2 start ./ecosystem.config.cjs",
+    "pm2:stop": "pm2 stop ./ecosystem.config.cjs"
   },
   "dependencies": {
+    "@vueuse/core": "^10.9.0",
     "nuxt": "^3.11.2",
+    "nuxtjs-naive-ui": "^1.0.2",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
+  },
+  "devDependencies": {
+    "naive-ui": "^2.38.2",
+    "vfonts": "^0.0.3"
   }
 }
