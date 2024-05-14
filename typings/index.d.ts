@@ -7,5 +7,13 @@ export type AppLayoutListType = {
 export type AppLayoutModelType = {
     activeVal: string
     list: AppLayoutListType[]
-    type: "topside" | "boardside" | "floatside"
+    type: AppLayoutSwitchType
+}
+
+export type AppLayoutSwitchType = "topside" | "boardside" | "floatside"
+
+export type FloatDivModelType = {
+    left: number
+    top: number
+
 }

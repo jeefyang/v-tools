@@ -14,15 +14,17 @@ const routerData = ref<AppLayoutModelType>({
     { val: "test4", tab: "测试4", url: "/test4" }
   ],
   activeVal: "",
-  type:"topside"
+  type: "floatside"
 })
 
-  onMounted(() => {
-    commonChangeRouter(routerData.value.list,{path:route.path,cb:(v)=>{
-      routerData.value.activeVal=v.val
-    }},false)
+onMounted(() => {
+  commonChangeRouter(routerData.value.list, {
+    path: route.path, cb: (v) => {
+      routerData.value.activeVal = v.val
+    }
+  }, false)
 
-  })
+})
 </script>
 <template>
   <template>
