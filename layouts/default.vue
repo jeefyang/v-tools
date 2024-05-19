@@ -34,7 +34,6 @@ const switchLabel = ref(<string>switchOption.find(c => c.value == model.value.ty
 const switchVal = ref(<AppLayoutSwitchType>model.value.type)
 
 const onswitch = (value: string) => {
-  console.log(value)
   model.value.type = <AppLayoutSwitchType>value
   switchLabel.value = switchOption.find(c => c.value == model.value.type)?.label || switchOption[0].label
 }
@@ -57,7 +56,17 @@ const changeRouter = (name: string) => {
 }
 
 onMounted(() => {
-
+  let width = window.innerWidth
+  let height = window.innerHeight
+  if (width <= 500) {
+    onswitch(<AppLayoutSwitchType>"floatside")
+  }
+  else if (width < height) {
+    onswitch(<AppLayoutSwitchType>"topside")
+  }
+  else {
+    onswitch(<AppLayoutSwitchType>"boardside")
+  }
 })
 
 

@@ -18,6 +18,7 @@ const routerData = ref<AppLayoutModelType>({
 })
 
 onMounted(() => {
+
   commonChangeRouter(routerData.value.list, {
     path: route.path, cb: (v) => {
       routerData.value.activeVal = v.val
