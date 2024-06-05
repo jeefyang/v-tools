@@ -6,8 +6,9 @@ const route = useRoute();
 
 const routerData = ref<AppLayoutModelType>({
   list: [
-    { val: "index", tab: "首页", url: "/" },
+    { val: "index", tab: "首页", url: "/", title: "快速小工具" },
     { val: "cronTime", tab: "cron表达式", url: "/cronTime" },
+    { val: "iconCut", tab: "图标裁切", url: "/iconCut" },
     { val: "test1", tab: "测试1", url: "/test1" },
     { val: "test2", tab: "测试2", url: "/test2" },
     { val: "test3", tab: "测试3", url: "/test3" },
@@ -22,6 +23,7 @@ onMounted(() => {
   commonChangeRouter(routerData.value.list, {
     path: route.path, cb: (v) => {
       routerData.value.activeVal = v.val
+      document.title = v.title || v.tab
     }
   }, false)
 

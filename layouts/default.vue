@@ -50,6 +50,7 @@ const changeRouter = (name: string) => {
     name: name,
     cb: (v) => {
       model.value.activeVal = v.val
+      document.title = v.title || v.tab
       emits("changeRouter", v)
     }
   }, true)

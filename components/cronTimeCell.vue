@@ -56,6 +56,26 @@ onMounted(() => {
         </n-flex>
     </template>
 
+    <!-- 不指定 -->
+    <template v-if="model?.type == 'noSelect'">
+        <div class="desc">不指定</div>
+    </template>
+
+    <!-- 最后 -->
+    <template v-if="model?.type == 'last'">
+        <div class="desc">{{ model.desc }}</div>
+    </template>
+
+    <!-- 接近 -->
+    <template v-if="model?.type == 'crossWrokDay'">
+        <n-flex>
+            <div>{{ model.prevStr }}</div>
+            <n-input-number v-model:value="model.from" :min="model.min" :max="model.max" class="input" />
+            <div>{{ model.nextStr }}</div>
+        </n-flex>
+
+    </template>
+
     <!-- 指定 -->
     <template v-if="model?.type == 'select'">
         <n-flex vertical>

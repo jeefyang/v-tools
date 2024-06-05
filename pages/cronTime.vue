@@ -1,6 +1,13 @@
 <script lang="ts" setup>
 import { NTabs, NTabPane, NRadio, NRadioGroup, NSpace, NFlex } from "naive-ui"
 import type { TimeItemType, TimeItemTypeType } from "~/typings/cronTime";
+import {parseExpression} from "cron-parser"
+
+console.log(parseExpression)
+var interval = parseExpression('*/2 * * * *');
+
+console.log('Date: ', interval.next().toString());
+console.log('Date: ', interval.next().toString());
 
 const secondData = ref<TimeItemType[]>([
   {
@@ -98,6 +105,137 @@ const hourData = ref<TimeItemType[]>([
 
 const hourSelect = ref<TimeItemTypeType>('wild')
 
+const dayData = ref<TimeItemType[]>([
+  {
+    type: "wild",
+    desc: "日"
+  },
+  {
+    type: "noSelect"
+  },
+  {
+    type: "cycle",
+    from: 1,
+    to: 2,
+    min: 1,
+    max: 31,
+    desc: "周期",
+    cell: "日"
+  },
+  {
+    type: "interval",
+    min: 1,
+    max: 31,
+    start: 1,
+    interval: 1,
+    cell: "日"
+  },
+  {
+    type: "crossWrokDay",
+    from: 1,
+    prevStr: "每月",
+    nextStr: "号最近的那个工作日",
+    min: 1,
+    max: 31,
+  },
+  {
+    type: "last",
+    desc: "本月最后一天",
+    count: 1,
+    isInput: false
+  },
+  {
+    type: "select",
+    from: 1,
+    to: 31,
+    select: []
+  }
+])
+
+const daySelect = ref<TimeItemTypeType>('wild')
+
+const monthData = ref<TimeItemType[]>([
+  {
+    type: "wild",
+    desc: "月"
+  },
+  {
+    type: "cycle",
+    from: 1,
+    to: 2,
+    min: 1,
+    max: 12,
+    desc: "周期",
+    cell: "月"
+  },
+  {
+    type: "interval",
+    min: 1,
+    max: 12,
+    start: 1,
+    interval: 1,
+    cell: "月"
+  },
+
+  {
+    type: "select",
+    from: 1,
+    to: 12,
+    select: []
+  }
+])
+
+const monthSelect = ref<TimeItemTypeType>('wild')
+
+const weekData = ref<TimeItemType[]>([
+  {
+    type: "wild",
+    desc: "日"
+  },
+  {
+    type: "noSelect"
+  },
+  {
+    type: "cycle",
+    from: 1,
+    to: 2,
+    min: 1,
+    max: 31,
+    desc: "周期",
+    cell: "日"
+  },
+  {
+    type: "interval",
+    min: 1,
+    max: 31,
+    start: 1,
+    interval: 1,
+    cell: "日"
+  },
+  {
+    type: "crossWrokDay",
+    from: 1,
+    prevStr: "每月",
+    nextStr: "号最近的那个工作日",
+    min: 1,
+    max: 31,
+  },
+  {
+    type: "last",
+    desc: "本月最后一个星期",
+    count: 1,
+    isInput: true
+  },
+  {
+    type: "select",
+    from: 1,
+    to: 31,
+    select: []
+  }
+])
+
+const weekSelect = ref<TimeItemTypeType>('wild')
+
 </script>
 
 <template>
@@ -144,9 +282,33 @@ const hourSelect = ref<TimeItemTypeType>('wild')
         </n-space>
       </n-radio-group>
     </n-tab-pane>
+    <!-- 日期 -->
+    <n-tab-pane name="day" tab="日期" display-directive="show" key="day">
+      <n-radio-group v-model:value="daySelect" name="radiogroup">
+        <n-space vertical>
+          <template v-for="(item, index) in dayData" :key="index">
+            <n-flex>
+              <n-radio :value="item.type">
+              </n-radio>
+              <cron-time-cell v-model="dayData[index]"></cron-time-cell>
+            </n-flex>
+          </template>
+        </n-space>
+      </n-radio-group>
+    </n-tab-pane>
     <!-- 月份 -->
     <n-tab-pane name="month" tab="月份">
-      月份
+      <n-radio-group v-model:value="monthSelect" name="radiogroup">
+        <n-space vertical>
+          <template v-for="(item, index) in monthData" :key="index">
+            <n-flex>
+              <n-radio :value="item.type">
+              </n-radio>
+              <cron-time-cell v-model="monthData[index]"></cron-time-cell>
+            </n-flex>
+          </template>
+        </n-space>
+      </n-radio-group>
     </n-tab-pane>
     <!-- 星期 -->
     <n-tab-pane name="week" tab="星期">

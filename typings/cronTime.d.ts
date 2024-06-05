@@ -33,10 +33,26 @@ export type TimeItemSelectType = {
     select: number[]
 }
 
-export type TimeItemLastType = {
-    type: "last"
+export type TimeItemCrossWorkDayType = {
+    type: "crossWrokDay"
+    from: number
+    prevStr: string
+    nextStr: string
+    min: number
+    max: number
 }
 
-export type TimeItemType = TimeItemWildType | TimeItemNoSelectType | TimeItemCycleType | TimeItemIntervalType | TimeItemSelectType | TimeItemLastType
+export type TimeItemCrossWeekType={
+    type:"crossWeek"
+}
+
+export type TimeItemLastType = {
+    type: "last"
+    desc: string
+    isInput: boolean
+    count: number
+}
+
+export type TimeItemType = TimeItemWildType | TimeItemNoSelectType | TimeItemCycleType | TimeItemIntervalType | TimeItemSelectType | TimeItemLastType | TimeItemCrossWorkDayType
 
 export type TimeItemTypeType = TimeItemType['type']

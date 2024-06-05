@@ -2,6 +2,7 @@ export type AppLayoutListType = {
     val: string
     tab: string
     url: string
+    title?: string
 }
 
 export type AppLayoutModelType = {
